@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>CS2001 Week 5: JUnit and Test Driven Development</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="W05-JUnit.tex"> 
+<link rel="stylesheet" type="text/css" href="W05-JUnit.css"> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                                      
+                                                                                      
+                                                                                      
+                                                                                      
+
+<h2 class="titleHead">CS2001 Week 5: JUnit and Test Driven Development</h2>
+<div class="author" ><span 
+class="pplr7t-x-x-120">Jon Lewis (jon.lewis@st-andrews.ac.uk)</span></div><br />
+<div class="date" ><span 
+class="pplr7t-x-x-120">Due date: Wednesday 16th October, 21:00</span><br />
+<span 
+class="pplr7t-x-x-120">25% of Practical Mark for the Module</span></div>
+   </div>
+   <h4 class="likesubsectionHead"><a 
+ id="x1-1000"></a>Objective</h4>
+<!--l. 20--><p class="noindent" >To gain experience with Test Driven Development and implementing and testing Abstract Data
+Types.
+<!--l. 22--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-2000"></a>Learning Outcomes</h4>
+<!--l. 24--><p class="noindent" >By the end of this practical you should understand:
+     <ul class="itemize1">
+     <li class="itemize">how to design and implement unit tests
+     </li>
+     <li class="itemize">how to use a Test Driven Development methodology to produce a robust implementation of a
+     specified ADT interface.</li></ul>
+<!--l. 33--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-3000"></a>Getting started</h4>
+<!--l. 34--><p class="noindent" >To start with, you should create a suitable assignment directory such as <span 
+class="pcrr7t-">CS2001/W05-JUnit </span>on the Linux lab
+clients. You should decompress the <span 
+class="pcrr7t-">zip </span>file at
+<div class="center" 
+>
+<!--l. 36--><p class="noindent" >
+<!--l. 37--><p class="noindent" ><a 
+href="http://studres.cs.st-andrews.ac.uk/CS2001/Practicals/W05-JUnit/code.zip" class="url" ><span 
+class="pcrr7t-">http://studres.cs.st-andrews.ac.uk/CS2001/Practicals/W05-JUnit/code.zip</span></a></div>
+<!--l. 40--><p class="noindent" >to your assignment directory. Please note that the <span 
+class="pcrr7t-">zip </span>file contains a number of files in the <span 
+class="pcrr7t-">src </span>directory, some
+of which are blank or only partially implemented. <span 
+class="pplb7t-">Once you have extracted the </span><span 
+class="pcrb7t-">zip </span><span 
+class="pplb7t-">file, you should probably</span>
+<span 
+class="pplb7t-">delete it to avoid accidentally overwriting your </span><span 
+class="pcrb7t-">src </span><span 
+class="pplb7t-">directory (and thereby your own implementation) with</span>
+<span 
+class="pplb7t-">files contained in the </span><span 
+class="pcrb7t-">zip</span><span 
+class="pplb7t-">.</span>
+                                                                                      
+                                                                                      
+<!--l. 45--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-4000"></a>Requirements</h4>
+<!--l. 47--><p class="noindent" >You are to develop an implementation of the ADT interfaces for a shop, stock records and products in the
+<span 
+class="pcrr7t-">interfaces </span>package in the <span 
+class="pcrr7t-">src </span>directory following a TDD process. That is, your job is to write suitable tests
+in the <span 
+class="pcrr7t-">test </span>package (such as in the supplied <span 
+class="pcrr7t-">Tests </span>class) and implement all the classes in the <span 
+class="pcrr7t-">impl </span>package to
+satisfy these tests. Parts of <span 
+class="pcrr7t-">impl.Factory </span>have been implemented, for this class you only need to implement
+the methods containing <span 
+class="pcrr7t-">// TODO </span>comments. <br 
+class="newline" />
+<!--l. 50--><p class="noindent" >Please note that you must <span 
+class="pplb7t-">NOT </span>change the interfaces. Coding to a given interface is an important
+aspect of development and is seen as a valuable exercise for this assignment and many others.
+<!--l. 52--><p class="noindent" >Following the TDD process, try to write <span 
+class="pcrr7t-">JUnit5 </span>tests for each element of functionality before writing and
+testing its implementation. When writing your tests, consider the following:
+     <ul class="itemize1">
+     <li class="itemize">Normal cases, with expected inputs.
+     </li>
+     <li class="itemize">Edge cases, such as empty collections, duplicate bar codes for different products, no stock.
+     </li>
+     <li class="itemize">Exceptional cases, such as dealing with <span 
+class="pcrr7t-">null</span>s.</li></ul>
+<!--l. 63--><p class="noindent" >Should you find some aspects of the interfaces ambiguous, you will need to make a decision as to how to
+implement the interface, which your tests should make clear.
+<!--l. 68--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-5000"></a>Running the Automated Checker</h4>
+<!--l. 69--><p class="noindent" >You can run the automated checking system on your program by opening a terminal window connected to the
+Linux lab clients/servers and executing the following commands:
+                                                                                      
+                                                                                      
+   <div class="verbatim" id="verbatim-1">
+cd&#x00A0;~/CS2001/W05-JUnit
+&#x00A0;<br />stacscheck&#x00A0;/cs/studres/CS2001/Practicals/W05-JUnit/Tests
+</div>
+<!--l. 74--><p class="nopar" >
+<!--l. 76--><p class="noindent" >assuming <span 
+class="pcrr7t-">CS2001/W05-JUnit </span>is your assignment directory. This will run your own JUnit tests in the <span 
+class="pcrr7t-">test</span>
+package on your own ADT implementation. A single test method is included in a <span 
+class="pcrr7t-">Tests </span>class in the <span 
+class="pcrr7t-">test</span>
+package. It merely checks that the factory method for creating a product (which you will have to
+implement) calls a suitable product constructor (which you will also have to implement). The test also
+demonstrates how to use the factory to instantiate objects. Your first step could be to make this failing test
+succeed before going on to add the next failing test(s), adding the corresponding implementation,
+re-running all tests etc. in the TDD process. The final test <span 
+class="pcrr7t-">TestQ CheckStyle </span>runs a program
+called Checkstyle over your source code using the <span 
+class="pplri7t-">Kirby Style </span>as mentioned for the exercise in week
+1.
+<div class="center" 
+>
+<!--l. 79--><p class="noindent" >
+<!--l. 80--><p class="noindent" ><a 
+href="https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/programming-style.html" class="url" ><span 
+class="pcrr7t-">https://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/programming-style.html</span></a></div>
+<!--l. 84--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-6000"></a>Deliverables</h4>
+<!--l. 86--><p class="noindent" >Hand in via MMS, by the deadline of 9pm on Wednesday of Week 5, a zip file containing:
+     <ul class="itemize1">
+     <li class="itemize">Your   assignment   directory   with   all   your   source   code,   including   your   tests   and   ADT
+     implementations.
+     </li>
+     <li class="itemize">A PDF report describing your test cases, how you chose those test cases, and how your choice of
+     test cases influenced the implementation of your ADT. You should also explain and justify your
+     design and implementation decisions in clarity and detail.</li></ul>
+<!--l. 94--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-7000"></a>Marking Guidance</h4>
+<!--l. 96--><p class="noindent" >The submission will be marked according to the mark descriptors used for CS21001/CS2101, which can be
+found at:
+<div class="center" 
+>
+<!--l. 98--><p class="noindent" >
+<!--l. 99--><p class="noindent" ><a 
+href="https://studres.cs.st-andrews.ac.uk/CS2001/Assessment/descriptors.pdf" class="url" ><span 
+class="pcrr7t-">https://studres.cs.st-andrews.ac.uk/CS2001/Assessment/descriptors.pdf</span></a></div>
+<!--l. 102--><p class="noindent" >A very good attempt in an object-oriented fashion achieving almost all required functionality, together with a
+clear report showing a good level of understanding, can achieve a mark of 14 - 16. This means you should
+produce very good, re-usable code with very good method decomposition and provide a very good set of
+tests with clear explanations and justifications of design and implementation decisions in your
+report. To achieve a mark of 17 or above, you will need to implement all required functionality
+with a comprehensive set of test cases, testing all aspects of your design and covering any cases.
+Quality and clarity of design, implementation, testing, and your report are key at the top end.
+<br 
+class="newline" />
+                                                                                      
+                                                                                      
+<!--l. 105--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-8000"></a>Lateness</h4>
+<!--l. 106--><p class="noindent" >The standard penalty for late submission applies (Scheme B: 1 mark per 8 hour period, or part thereof):
+<a 
+href="http://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties" class="url" ><span 
+class="pcrr7t-">http://info.cs.st-andrews.ac.uk/student-handbook/learning-teaching/assessment.html#lateness-penalties</span></a>
+<!--l. 109--><p class="noindent" >
+   <h4 class="likesubsectionHead"><a 
+ id="x1-9000"></a>Good Academic Practice</h4>
+<!--l. 110--><p class="noindent" >As usual, I would remind you to ensure you are following the relevant guidelines on good academic practice as
+outlined at
+<div class="center" 
+>
+<!--l. 111--><p class="noindent" >
+<!--l. 112--><p class="noindent" ><a 
+href="https://www.st-andrews.ac.uk/students/rules/academicpractice/" class="url" ><span 
+class="pcrr7t-">https://www.st-andrews.ac.uk/students/rules/academicpractice/</span></a></div>
+    
+</body></html> 
+
+                                                                                      
+
+
