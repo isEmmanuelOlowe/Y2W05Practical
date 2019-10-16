@@ -106,7 +106,13 @@ public class Shop extends AbstractFactoryClient implements IShop {
     public int getTotalStockCount() {
       int total = 0;
       for (String barCode: stockRecords.keySet()) {
-        total += getStockCount(barCode);
+        try {
+          total += getStockCount(barCode);
+        }
+        //cant happen as we are iterating over hashset of registered products.
+        catch (ProductNotRegisteredException e) {
+          e.printStackTrace();
+        }
       }
       return total;
     }
