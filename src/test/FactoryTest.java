@@ -15,7 +15,7 @@ import common.*;
 /**
 * This is a JUnit test class for Factory.
 */
-public class FactioryTest extends AbstractFactoryClient {
+public class FactoryTest extends AbstractFactoryClient {
 
   /**
    * This checks that the factory was able to call a sensible constructor to get a non-null instance of IProduct.
