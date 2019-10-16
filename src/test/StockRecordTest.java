@@ -24,7 +24,7 @@ public class StockRecordTest extends AbstractFactoryClient {
     final int initialState = 0;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
-    assertEquals(InitialState, stockRecord.getStockCount());
+    assertEquals(initialState, stockRecord.getStockCount());
   }
 
   /**
@@ -36,7 +36,7 @@ public class StockRecordTest extends AbstractFactoryClient {
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     stockRecord.addStock();
-    assertEquals(StockAfterOneAdded, stockRecord.getStockCount());
+    assertEquals(stockAfterOneAdded, stockRecord.getStockCount());
   }
 
   /**
@@ -48,11 +48,10 @@ public class StockRecordTest extends AbstractFactoryClient {
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
-    final int addFiftyStock = 50;
-    for (int i = 0; i < addFiftyStock; i++ ){
+    for (int i = 0; i < addedFiftyStock; i++ ){
       stockRecord.addStock();
     }
-    assertEquals(AddedFiftyStock, stockRecord.getStockCount());
+    assertEquals(addedFiftyStock, stockRecord.getStockCount());
   }
 
   /**
@@ -73,7 +72,7 @@ public class StockRecordTest extends AbstractFactoryClient {
     for(int i = 0; i < buyTwentyNineProducts; i++) {
       stockRecord.buyProduct();
     }
-    assertEquals(RemainingTwentyOneStock, stockRecord.getStockCount());
+    assertEquals(remainingTwentyOneStock, stockRecord.getStockCount());
   }
 
   /**
