@@ -18,7 +18,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
     private HashMap<String, IStockRecord> stockRecords;
 
     /**
-    * Creates a new Shop
+    * Creates a new Shop.
     */
     public Shop() {
       stockRecords = new HashMap<String, IStockRecord>();
@@ -42,7 +42,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
     }
 
     /**
-    * removes a product for the registered products
+    * removes a product for the registered products.
     *
     * @param product the product being unregistered.
     * @throws ProductNotRegisteredException if the product attempting to be unregistered is not a registered product
@@ -58,7 +58,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
     }
 
     /**
-    * Adds stock for a specific barcode of product
+    * Adds stock for a specific barcode of product.
     *
     * @param barCode the barcode of the product which stock is being added.
     * @throws ProductNotRegisteredException if the barcode does not correspond to that of any registered product.
@@ -75,7 +75,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
     }
 
     /**
-    * Buys a specificed product from avaliable stock
+    * Buys a specificed product from avaliable stock.
     *
     * @param barCode the barcode of product being bought.
     * @throws ProductNotRegisteredException If the barcode does not correspond to that of any registered product.
@@ -92,7 +92,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
     }
 
     /**
-    * Gets the total number of products in shop
+    * Gets the total number of products in shop.
     *
     * @return the number of products
     */
@@ -136,7 +136,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
     }
 
     /**
-    * Gets the total amount of sales for a specific product
+    * Gets the total amount of sales for a specific product.
     *
     * @param barCode the barcode of the product which total sales are being recieved.
     * @throws ProductNotRegisteredException in the event the barcode does not correspond to a registered product.

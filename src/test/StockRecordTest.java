@@ -11,6 +11,9 @@ import common.StockUnavailableException;
 import interfaces.IProduct;
 import interfaces.IStockRecord;
 
+/**
+* This is a JUnit test class for StockRecord ADT.
+*/
 public class StockRecordTest extends AbstractFactoryClient {
 
   /**
@@ -18,9 +21,10 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordInitiallyZero() {
+    final int InitialState = 0;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
-    assertEquals(0, stockRecord.getStockCount());
+    assertEquals(InitialState, stockRecord.getStockCount());
   }
 
   /**
@@ -28,10 +32,11 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordAddSingleStock() {
+    final int StockAfterOneAdded = 1;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     stockRecord.addStock();
-    assertEquals(1, stockRecord.getStockCount());
+    assertEquals(StockAfterOneAdded, stockRecord.getStockCount());
   }
 
   /**
@@ -39,20 +44,22 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordAddMultipleStock() {
+    final int AddedFiftyStock = 50;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
     for (int i = 0; i < 50; i++ ){
       stockRecord.addStock();
     }
-    assertEquals(50, stockRecord.getStockCount());
+    assertEquals(AddedFiftyStock, stockRecord.getStockCount());
   }
 
   /**
   * Checks when a product is bought stock is descreased.
   */
   @Test
-  public void StockRecordBuyReducesStock() throws StockUnavailableException {
+  public void stockRecordBuyReducesStock() throws StockUnavailableException {
+    final int RemainingTwentyOneStock = 21;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
@@ -63,13 +70,14 @@ public class StockRecordTest extends AbstractFactoryClient {
     for(int i = 0; i < 29; i++) {
       stockRecord.buyProduct();
     }
-    assertEquals(21, stockRecord.getStockCount());
+    assertEquals(RemainingTwentyOneStock, stockRecord.getStockCount());
   }
 
   /**
   * Checks when a product is bought sales is increased.
   */
-  public void StockRecordBuyIncreasesSales() throws StockUnavailableException {
+  public void stockRecordBuyIncreasesSales() throws StockUnavailableException {
+    final int RemainingElevenStock = 11;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
@@ -80,14 +88,14 @@ public class StockRecordTest extends AbstractFactoryClient {
     for(int i = 0; i < 11; i++) {
       stockRecord.buyProduct();
     }
-    assertEquals(11, stockRecord.getStockCount());
+    assertEquals(RemainingElevenStock, stockRecord.getStockCount());
   }
 
   /**
   * Checks exception is thrown if you try to buy a product which a no stock
   */
   @Test
-  public void StockRecordCantBuyFromZeroStock() {
+  public void stockRecordCantBuyFromZeroStock() {
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     assertThrows(StockUnavailableException.class, () -> {
@@ -99,7 +107,7 @@ public class StockRecordTest extends AbstractFactoryClient {
   * Checks that product is stored in the StockRecord
   */
   @Test
-  public void StockRecordProductStored() {
+  public void stockRecordProductStored() {
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     assertEquals(product, stockRecord.getProduct());

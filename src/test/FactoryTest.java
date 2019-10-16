@@ -10,8 +10,6 @@ import interfaces.IProduct;
 import interfaces.IStockRecord;
 import interfaces.IShop;
 
-import common.*;
-
 /**
 * This is a JUnit test class for Factory.
 */
@@ -37,10 +35,10 @@ public class FactoryTest extends AbstractFactoryClient {
   }
 
   /**
-  * Checks the creation of a shop is an object
+  * Checks the creation of a shop is an object.
   */
   @Test
-  public void ShopCreationNonNull() {
+  public void shopCreationNonNull() {
     IShop shop = getFactory().makeShop();
     assertNotNull(shop);
   }

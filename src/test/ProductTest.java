@@ -9,12 +9,12 @@ import common.AbstractFactoryClient;
 import interfaces.IProduct;
 
 /**
-* This is a a JUnirt test class for the Product ADT
+* This is a a JUnirt test class for the Product ADT.
 */
 public class ProductTest extends AbstractFactoryClient {
 
   /**
-  * This checks that barcode is returned correctly from the product
+  * This checks that barcode is returned correctly from the product.
   */
   @Test
   public void productBarcode() {
@@ -24,7 +24,7 @@ public class ProductTest extends AbstractFactoryClient {
   }
 
   /**
-  * This checks that description of the product is returned correctly
+  * This checks that description of the product is returned correctly.
   */
   @Test
   public void productDescription() {

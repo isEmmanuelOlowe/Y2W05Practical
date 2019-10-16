@@ -12,7 +12,7 @@ public class Product implements IProduct {
    private String descrption;
 
    /**
-   * Creates a new product
+   * Creates a new product.
    *
    * @param barcode the barcode of the product
    * @param descrption the descrption of the product
@@ -23,7 +23,7 @@ public class Product implements IProduct {
    }
 
    /**
-   * Gets the barcode of the product
+   * Gets the barcode of the product.
    *
    * @return the barcode
    */
@@ -34,7 +34,7 @@ public class Product implements IProduct {
 
 
    /**
-   * Gets the desciption of the product
+   * Gets the desciption of the product.
    *
    * @return the description of the product
    */

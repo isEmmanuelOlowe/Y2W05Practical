@@ -1,8 +1,5 @@
 package impl;
 
-import impl.Product;
-import impl.StockRecord;
-import impl.Shop;
 import interfaces.IFactory;
 import interfaces.IProduct;
 import interfaces.IShop;
