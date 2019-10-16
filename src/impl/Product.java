@@ -48,7 +48,7 @@ public class Product implements IProduct {
     *
     * @return true if description and barcode are the same.
     */
-    @override equals(IProduct product) {
+    @override boolean equals(IProduct product) {
       if (product.getBarCode().equals(barcode) && product.getDescription().equals(descrption)) {
         return true;
       }
