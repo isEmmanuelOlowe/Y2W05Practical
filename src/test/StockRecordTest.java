@@ -48,7 +48,7 @@ public class StockRecordTest extends AbstractFactoryClient {
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
-    for (int i = 0; i < addedFiftyStock; i++ ){
+    for (int i = 0; i < addedFiftyStock; i++ ) {
       stockRecord.addStock();
     }
     assertEquals(addedFiftyStock, stockRecord.getStockCount());
@@ -56,6 +56,8 @@ public class StockRecordTest extends AbstractFactoryClient {
 
   /**
   * Checks when a product is bought stock is descreased.
+  *
+  * @throws StockUnavailableException the exception is not checked by this test but thrown by buyProduct method
   */
   @Test
   public void stockRecordBuyReducesStock() throws StockUnavailableException {
@@ -64,19 +66,21 @@ public class StockRecordTest extends AbstractFactoryClient {
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
     final int addFiftyStock = 50;
-    for (int i = 0; i < addFiftyStock; i++ ){
+    for (int i = 0; i < addFiftyStock; i++ ) {
       stockRecord.addStock();
     }
     //buys 29 of the product
     final int buyTwentyNineProducts = 29;
-    for(int i = 0; i < buyTwentyNineProducts; i++) {
+    for (int i = 0; i < buyTwentyNineProducts; i++) {
       stockRecord.buyProduct();
     }
     assertEquals(remainingTwentyOneStock, stockRecord.getStockCount());
   }
 
   /**
-  * Checks when a product is bought sales is increased.
+  * Checks when a product is bought sales is increased
+  *
+  * @throws StockUnavailableException checked exception thrown from BuyProduct
   */
   public void stockRecordBuyIncreasesSales() throws StockUnavailableException {
     final int elevenSales = 11;
@@ -84,11 +88,11 @@ public class StockRecordTest extends AbstractFactoryClient {
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
     final int addFiftyStock = 50;
-    for (int i = 0; i < 50; i++ ){
+    for (int i = 0; i < addFiftyStock; i++ ) {
       stockRecord.addStock();
     }
     //buys 11 of the product
-    for(int i = 0; i < elevenSales; i++) {
+    for (int i = 0; i < elevenSales; i++) {
       stockRecord.buyProduct();
     }
     assertEquals(elevenSales, stockRecord.getStockCount());
