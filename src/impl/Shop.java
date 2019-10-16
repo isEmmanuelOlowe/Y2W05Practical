@@ -6,6 +6,7 @@ import common.BarCodeAlreadyInUseException;
 import common.ProductNotRegisteredException;
 import common.StockUnavailableException;
 import interfaces.IProduct;
+import interfaces.IStockRecord;
 import interfaces.IShop;
 /**
  * This class represents a simple shop which can stok and sell products.
