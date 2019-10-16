@@ -52,7 +52,7 @@ public class StockRecordTest extends AbstractFactoryClient {
   * Checks when a product is bought stock is descreased.
   */
   @Test
-  public void StockRecordBuyReducesStock() {
+  public void StockRecordBuyReducesStock() throws StockUnavailableException {
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
@@ -69,7 +69,7 @@ public class StockRecordTest extends AbstractFactoryClient {
   /**
   * Checks when a product is bought sales is increased.
   */
-  public void StockRecordBuyIncreasesSales() {
+  public void StockRecordBuyIncreasesSales() throws StockUnavailableException {
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
