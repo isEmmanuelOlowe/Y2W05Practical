@@ -154,21 +154,20 @@ public class Shop extends AbstractFactoryClient implements IShop {
      */
     @Override
     public IProduct getMostPopular() throws ProductNotRegisteredException {
-      if (stockRecords.size() == 0) {}
-        IProduct mostPopular;
-        int mostPopularSale;
-        if (stockRecords.size() == 0) {
-          throw new ProductNotRegisteredException();
-        }
-        else {
-          for (String barCode: stockRecords.keySet()) {
-            if (getNumberOfSales(barCode) > mostPopularSale) {
-              mostPopular = stockRecords.get(barCode).getProduct();
-              mostPopular = getNumberOfSales(barCode);
-            }
+      IProduct mostPopular;
+      int mostPopularSale;
+      if (stockRecords.size() == 0) {
+        throw new ProductNotRegisteredException();
+      }
+      else {
+        for (String barCode: stockRecords.keySet()) {
+          if (getNumberOfSales(barCode) > mostPopularSale) {
+            mostPopular = stockRecords.get(barCode).getProduct();
+            mostPopular = getNumberOfSales(barCode);
           }
         }
-        return mostPopular;
+      }
+      return mostPopular;
     }
 
 }
