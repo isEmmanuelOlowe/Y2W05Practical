@@ -10,7 +10,46 @@ The specification has required that Test-Driven Development be used to implement
 
 ## Design
 
-### `Product`
+### `IFactory`
+
+It can be seen for the specification that to implement this class fully all that is required is that the methods return objects which implement the interface of the return of the methods.
+
+### `IProduct`
+
+To implement this method all that is required is some way to store a barcode assumed to be string and description which is also a string for the object. It has been defined that if two products have the same barcode and same description then they must be the same object. So essential `equals()` must be override to implement the objects to check if two objects are the same. 
+
+### `IStockRecord`
+
+To fully implement this interface; there must be a method of storing the `IProduct` that this stock record is for, a way to store and get the total stock count, get the number of sales which have occurred, add stock (assumed only 1 added at a time) and buy products (assumed only 1 bought at a time). It can also be seen that when an attempt to buy a product when there is no stock an exception is thrown so a way to determine if there is no stock and throw this exception must be made.
+
+### `IShop`
+
+To fully implement this interface;
+
+* There must be a method which registers product; so when this method is called the total stock count must increase by 1. Also this method must throw an exception if a product with the same bar code is attempted to be added.
+* There must be a method which 
+
+### `FactoryTest`
+
+This class was designed to Test the factory method. Only methods present in the `IFactory`  interface were tested.  Essential the point of the factory here is to return object which implements the given interface so tests were created to see if factory completed its function.
+
+#### `productCreationNonNull`
+
+Checks that the factory returns an `IProduct` object which implements the interface and not null.
+
+#### `stockRecordCreationNonNull`
+
+Checks that factory returns an `IStockRecord` object which implements the interface and not null.
+
+#### `shopCreationNonNull`
+
+Checks that the creation of a shop is an `IShop` object which implements the interface and not null.
+
+### `ProductTest`
+
+This class class was designed to Test the factory method. Only methods present in the `IProduct` interface will be tested.
+
+`Product`
 
 To tests if the product class fulfils its functionality. To the following tests were developed.
 

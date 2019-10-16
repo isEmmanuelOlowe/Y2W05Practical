@@ -3,8 +3,7 @@ package test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import common.AbstractFactoryClient;
 import common.StockUnavailableException;
@@ -17,13 +16,19 @@ import interfaces.IStockRecord;
 public class StockRecordTest extends AbstractFactoryClient {
 
   /**
+  * Creates the StockRecord and Product that will be used to test the StockRecord.
+  */
+  @BeforeEach
+  public void createStockRecord() {
+    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
+    IStockRecord stockRecord = getFactory().makeStockRecord(product);
+  }
+  /**
   * Checks the initial stock amount is zero.
   */
   @Test
   public void stockRecordInitiallyZero() {
     final int initialState = 0;
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
     assertEquals(initialState, stockRecord.getStockCount());
   }
 
@@ -33,8 +38,6 @@ public class StockRecordTest extends AbstractFactoryClient {
   @Test
   public void stockRecordAddSingleStock() {
     final int stockAfterOneAdded = 1;
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
     stockRecord.addStock();
     assertEquals(stockAfterOneAdded, stockRecord.getStockCount());
   }
@@ -45,8 +48,6 @@ public class StockRecordTest extends AbstractFactoryClient {
   @Test
   public void stockRecordAddMultipleStock() {
     final int addedFiftyStock = 50;
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
     for (int i = 0; i < addedFiftyStock; i++) {
       stockRecord.addStock();
@@ -62,8 +63,6 @@ public class StockRecordTest extends AbstractFactoryClient {
   @Test
   public void stockRecordBuyReducesStock() throws StockUnavailableException {
     final int remainingTwentyOneStock = 21;
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
     final int addFiftyStock = 50;
     for (int i = 0; i < addFiftyStock; i++) {
@@ -84,8 +83,6 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   public void stockRecordBuyIncreasesSales() throws StockUnavailableException {
     final int elevenSales = 11;
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
     final int addFiftyStock = 50;
     for (int i = 0; i < addFiftyStock; i++) {
@@ -103,8 +100,6 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordCantBuyFromZeroStock() {
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
     assertThrows(StockUnavailableException.class, () -> {
       stockRecord.buyProduct();
     });
@@ -115,8 +110,6 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordProductStored() {
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
     assertEquals(product, stockRecord.getProduct());
   }
 }

@@ -53,7 +53,14 @@ public class Shop extends AbstractFactoryClient implements IShop {
           throw new ProductNotRegisteredException();
         }
         else {
-          stockRecords.remove(product.getBarCode());
+          IStockRecord stockRecord = stockRecords.get(product.getBarCode());
+          IProduct sameBarcode = stockRecord.getProduct();
+          if (product.equals(sameBarcode)) {
+            stockRecords.remove(product.getBarCode());
+          }
+          else {
+            throw new ProductNotRegisteredException();
+          }
         }
     }
 
