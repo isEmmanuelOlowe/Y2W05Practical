@@ -11,7 +11,7 @@ import interfaces.IProduct;
 /**
 * This is a a JUnirt test class for the Product ADT
 */
-public class Tests extends AbstractFactoryClient {
+public class ProductTest extends AbstractFactoryClient {
 
   /**
   * This checks that barcode is returned correctly from the product

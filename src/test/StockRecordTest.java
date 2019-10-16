@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import common.AbstractFactoryClient;
+import common.StockUnavailableException;
 import interfaces.IProduct;
 import interfaces.IStockRecord;
 
