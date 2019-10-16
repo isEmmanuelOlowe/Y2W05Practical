@@ -155,8 +155,8 @@ public class Shop extends AbstractFactoryClient implements IShop {
      */
     @Override
     public IProduct getMostPopular() throws ProductNotRegisteredException {
-      IProduct mostPopular;
-      int mostPopularSale;
+      IProduct mostPopular = null;
+      int mostPopularSale = -1;
       if (stockRecords.size() == 0) {
         throw new ProductNotRegisteredException();
       }
@@ -164,7 +164,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
         for (String barCode: stockRecords.keySet()) {
           if (getNumberOfSales(barCode) > mostPopularSale) {
             mostPopular = stockRecords.get(barCode).getProduct();
-            mostPopular = getNumberOfSales(barCode);
+            mostPopularSale = getNumberOfSales(barCode);
           }
         }
       }

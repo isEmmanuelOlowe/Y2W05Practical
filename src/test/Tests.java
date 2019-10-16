@@ -10,6 +10,7 @@ import common.AbstractFactoryClient;
 import interfaces.IProduct;
 import interfaces.IStockRecord;
 import interfaces.IShop;
+import common.*;
 
 /**
  * This is a JUnit test class for the Shop ADT.
