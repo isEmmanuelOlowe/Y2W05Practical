@@ -21,7 +21,7 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordInitiallyZero() {
-    final int InitialState = 0;
+    final int initialState = 0;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     assertEquals(InitialState, stockRecord.getStockCount());
@@ -32,7 +32,7 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordAddSingleStock() {
-    final int StockAfterOneAdded = 1;
+    final int stockAfterOneAdded = 1;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     stockRecord.addStock();
@@ -44,11 +44,12 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordAddMultipleStock() {
-    final int AddedFiftyStock = 50;
+    final int addedFiftyStock = 50;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
-    for (int i = 0; i < 50; i++ ){
+    final int addFiftyStock = 50;
+    for (int i = 0; i < addFiftyStock; i++ ){
       stockRecord.addStock();
     }
     assertEquals(AddedFiftyStock, stockRecord.getStockCount());
@@ -59,15 +60,17 @@ public class StockRecordTest extends AbstractFactoryClient {
   */
   @Test
   public void stockRecordBuyReducesStock() throws StockUnavailableException {
-    final int RemainingTwentyOneStock = 21;
+    final int remainingTwentyOneStock = 21;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
-    for (int i = 0; i < 50; i++ ){
+    final int addFiftyStock = 50;
+    for (int i = 0; i < addFiftyStock; i++ ){
       stockRecord.addStock();
     }
     //buys 29 of the product
-    for(int i = 0; i < 29; i++) {
+    final int buyTwentyNineProducts = 29;
+    for(int i = 0; i < buyTwentyNineProducts; i++) {
       stockRecord.buyProduct();
     }
     assertEquals(RemainingTwentyOneStock, stockRecord.getStockCount());
@@ -77,22 +80,23 @@ public class StockRecordTest extends AbstractFactoryClient {
   * Checks when a product is bought sales is increased.
   */
   public void stockRecordBuyIncreasesSales() throws StockUnavailableException {
-    final int RemainingElevenStock = 11;
+    final int elevenSales = 11;
     IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
     IStockRecord stockRecord = getFactory().makeStockRecord(product);
     //adds 50 items
+    final int addFiftyStock = 50;
     for (int i = 0; i < 50; i++ ){
       stockRecord.addStock();
     }
     //buys 11 of the product
-    for(int i = 0; i < 11; i++) {
+    for(int i = 0; i < elevenSales; i++) {
       stockRecord.buyProduct();
     }
-    assertEquals(RemainingElevenStock, stockRecord.getStockCount());
+    assertEquals(elevenSales, stockRecord.getStockCount());
   }
 
   /**
-  * Checks exception is thrown if you try to buy a product which a no stock
+  * Checks exception is thrown if you try to buy a product which a no stock.
   */
   @Test
   public void stockRecordCantBuyFromZeroStock() {
@@ -104,7 +108,7 @@ public class StockRecordTest extends AbstractFactoryClient {
   }
 
   /**
-  * Checks that product is stored in the StockRecord
+  * Checks that product is stored in the StockRecord.
   */
   @Test
   public void stockRecordProductStored() {
