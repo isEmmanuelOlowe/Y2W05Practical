@@ -86,6 +86,7 @@ public class Shop extends AbstractFactoryClient implements IShop {
     *
     * @param barCode the barcode of product being bought.
     * @throws ProductNotRegisteredException If the barcode does not correspond to that of any registered product.
+    * @throws StockUnavailableException if there is no stock avaliable to be bought
     */
     @Override
     public void buyProduct(String barCode) throws StockUnavailableException, ProductNotRegisteredException {

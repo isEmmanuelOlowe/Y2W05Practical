@@ -15,14 +15,27 @@ import interfaces.IStockRecord;
 */
 public class StockRecordTest extends AbstractFactoryClient {
 
+  private IProduct product;
+  private IStockRecord stockRecord;
+
   /**
   * Creates the StockRecord and Product that will be used to test the StockRecord.
   */
   @BeforeEach
   public void createStockRecord() {
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
-    IStockRecord stockRecord = getFactory().makeStockRecord(product);
+    product = getFactory().makeProduct("1234567", "Laptop Computer");
+    stockRecord = getFactory().makeStockRecord(product);
   }
+
+
+  /**
+  * Checks that you can get stock count.
+  */
+  @Test
+  public void stockRecordStockCount() {
+    stockRecord.getStockCount();
+  }
+
   /**
   * Checks the initial stock amount is zero.
   */
@@ -53,6 +66,17 @@ public class StockRecordTest extends AbstractFactoryClient {
       stockRecord.addStock();
     }
     assertEquals(addedFiftyStock, stockRecord.getStockCount());
+  }
+
+  /**
+  * Checks you are able to buy a product.
+  *
+  * @throws StockUnavailableException in the event there is no stock
+  */
+  @Test
+  public void stockRecordBuyProduct() throws StockUnavailableException {
+    stockRecord.addStock();
+    stockRecord.buyProduct();
   }
 
   /**

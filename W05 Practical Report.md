@@ -26,8 +26,36 @@ To fully implement this interface; there must be a method of storing the `IProdu
 
 To fully implement this interface;
 
-* There must be a method which registers product; so when this method is called the total stock count must increase by 1. Also this method must throw an exception if a product with the same bar code is attempted to be added.
-* There must be a method which 
+* There must be a method which registers product; 
+  * so when this method is called the total stock count must increase by 1.
+  * Also this method must throw an exception if a product with the same bar code is attempted to be added.
+* There must be a method which removes registered products; 
+  * so if a product is not registered an exception must be thrown.
+  * Shall decrease the total number of products by 1.
+  * All of its stock shall be removes from the total stock.
+* Must be able to add stock for a specific product barcode
+  * cannot add stock if the product bar code is not registered
+  * increases the total stock of the product
+  * increases the total stock of the shop
+* Must be able to buy able to buy products which are registered;
+  * cannot buy from unregistered product
+  * buying increases the amount of sales for that product in their stock record
+  * buying decreases amount of total stock
+  * buying decreases the amount of stock for that specific product
+* Gets the total amount of products
+* gets the total amount of stock
+* gets the stock count of a specific product
+  * cannot get the stock count of an unregistered product.
+* Gets the total amount of sales for a specific product.
+  * cannot get the amount of sales for an unregistered product.
+* gets the most popular product
+  * always returns a product regardless of the amount of sales
+  * returns the product with the most sales
+  * returns exception if there are no registered products
+
+## TDD
+
+These are sets of tests which were created to resolve if a given method fulfils its desired functionality. These tests will determine if the interfaces have been correctly interfaces as the check if the required functionality and conclusions drawn from effects difference methods must have on each other are seen in the tests.
 
 ### `FactoryTest`
 
@@ -49,27 +77,23 @@ Checks that the creation of a shop is an `IShop` object which implements the int
 
 This class class was designed to Test the factory method. Only methods present in the `IProduct` interface will be tested.
 
-`Product`
-
-To tests if the product class fulfils its functionality. To the following tests were developed.
-
-#### `productCreationNonNull`
-
-Checks that the instantiation of the product class is not null and returns an object.
-
 #### `productBarcode`
 
-Tests that when a product is created that its barcode can be retrieved from the object.
+Tests that when a product is created that its bar code can be retrieved from the object.
 
 #### `productDescription`
 
 Tests that when a product is created that its description can be retrieved from the object.
 
+#### `productEquals`
+
+Tests if the `.equals()` method has been over written for the product implementation being used.
+
 ### `StockRecord`
 
-#### `stockRecordCreationNonNull`
+#### `createStockStockCount`
 
-Checks that the instantiation of the product class is not null and returns an object.
+Checks if you are able to run Stock Count
 
 #### `stockRecordInitallyZero`
 
@@ -81,7 +105,11 @@ Checks that the amount of stock is incremented when the `addStock()` method is c
 
 #### `stocRecordAddMultipleStock`
 
-Checks that the amount of incrementation works for add more than one items to. Further checking if the `addStock()` works properly. 
+Checks that the amount of increments works for add more than one items to. Further checking if the `addStock()` works properly. 
+
+#### `StockRecordBuyProduct`
+
+Checks you are able to actually buy a product.
 
 #### `stockRecordBuyRecducesStock`
 
@@ -99,10 +127,24 @@ Checks that an exception is called when an attempt to `buyProduct()` if current 
 
 Checks that the object is stored in the `stockRecord` object.
 
+### `StockRecord`
 
+These tests functionality can be seen from the JUnit tests.
 
-## Ambiguity
+## JUnit Tests Output
 
-* unregistering a product is checking just the barcode enough. Do they have to be the same object or just have the same name and description.
+ ![](junit.png)
 
-* Assumes that most popular means the product with the most sales
+## Independence
+
+The tests performed aren't really independent as a lot them assume the full functionality of another aspect. For example if we want to determine if we can actually buy a product we must determine if we are able to call the method. This just tells us we are able to run that method not that a product is bought. We determine that it works through testing if the total stock and product stock decreases and the sales increases. So it depends on the functionality of `TotalStock` and `getStockCount` to show that it actually functions. So the test are necessarily independent. 
+
+## Ambiguities
+
+* Unregistered a product is checking just the bar code enough. Do they have to be the same object or just have the same name and description. So a redefinition of equals for products was designed for this implementation where the only definition of two objects being equals is if there description and bar code are the same.
+
+* Assumes that most popular must just return an object with the highest number of sales. Not necessarily every object with the highest number of sales. e.g. if there is a only 1 registered object with zero sales it shall be returned as the object with the most popularity.
+
+## Conclusion
+
+Through Test Driven Development a set of pre-written interfaces were implement by developing tests which their methods would have to fulfil and then creating classes which actually fulfils that functionality.

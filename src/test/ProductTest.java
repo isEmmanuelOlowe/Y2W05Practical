@@ -13,12 +13,13 @@ import interfaces.IProduct;
 */
 public class ProductTest extends AbstractFactoryClient {
 
+  private IProduct product;
   /**
   * Creates the product object that will be tested.
   */
   @BeforeEach
   public void createProduct() {
-    IProduct product = getFactory().makeProduct("1234567", "Laptop Computer");
+    product = getFactory().makeProduct("1234567", "Laptop Computer");
   }
   /**
   * This checks that barcode is returned correctly from the product.
@@ -39,7 +40,7 @@ public class ProductTest extends AbstractFactoryClient {
   }
 
   /**
-  * Tests if the definition of equals has been changed for product object
+  * Tests if the definition of equals has been changed for product object.
   */
   public void productEquals() {
     IProduct product2 = getFactory().makeProduct("1234567", "Laptop Computer");
